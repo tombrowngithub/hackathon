@@ -1,3 +1,9 @@
+function handleEnterKey(event, sectionId) {
+    if (event.key === 'Enter') {
+        toggleAccordion(sectionId)
+    }
+}
+
 function toggleAccordion(sectionId) {
     let content = document.getElementById(sectionId)
     let arrowIconUp = document.querySelector('.arrow-icon-up')
@@ -7,6 +13,10 @@ function toggleAccordion(sectionId) {
         arrowIconUp.style.display = 'none'
         arrowIconDown.style.display = 'block'
         content.style.display = "none"
+
+        if (event.key === 'Enter'){
+
+        }
     } else {
         arrowIconUp.style.display = 'block'
         arrowIconDown.style.display = 'none'
@@ -14,8 +24,11 @@ function toggleAccordion(sectionId) {
     }
 }
 
-let gaugeCount = 0
+document.addEventListener('keydown', function (event) {
+    handleEnterKey(event, 'section1')
+})
 
+let gaugeCount = 0
 
 function updateProgressBar() {
     let progressBar = document.querySelector('.progress-bar')
@@ -24,28 +37,6 @@ function updateProgressBar() {
     progressBar.style.borderRadius = '2px'
 }
 
-// function IconToggle(icon1Id, icon2Id) {
-//     let clickedIcon1 = document.querySelector('.' + icon1Id)
-//     let clickedIcon2 = document.querySelector('.' + icon2Id)
-//
-//     let gaugeText = document.querySelector('.gauge')
-//
-//     if (window.getComputedStyle(clickedIcon1).display === 'block') {
-//         clickedIcon1.style.display = 'none'
-//         clickedIcon2.style.display = 'block'
-//         if (gaugeCount < 5) {
-//             gaugeText.textContent = `${++gaugeCount} / 5 completed`
-//             updateProgressBar()
-//         }
-//     } else {
-//         clickedIcon1.style.display = 'block'
-//         clickedIcon2.style.display = 'none'
-//         if (gaugeCount > 0) {
-//             gaugeText.textContent = `${--gaugeCount} / 5 completed`
-//             updateProgressBar()
-//         }
-//     }
-// }
 
 function IconToggle(icon1Id, icon2Id, spinner) {
     let clickedIcon1 = document.querySelector('.' + icon1Id)
@@ -55,17 +46,13 @@ function IconToggle(icon1Id, icon2Id, spinner) {
     let gaugeText = document.querySelector('.gauge')
 
     if (window.getComputedStyle(clickedIcon1).display === 'block') {
-        // Display the spinner
         Spinner.style.display = 'block'
         clickedIcon1.style.display = 'none'
         clickedIcon2.style.display = 'none'
 
-        // Delay showing clickedIcon2 for 3 seconds
         setTimeout(function () {
-            // Hide the spinner
             Spinner.style.display = 'none'
 
-            // Show clickedIcon2
             clickedIcon1.style.display = 'none'
             clickedIcon2.style.display = 'block'
 
@@ -84,7 +71,6 @@ function IconToggle(icon1Id, icon2Id, spinner) {
         }
     }
 }
-
 
 
 updateProgressBar()
@@ -128,18 +114,33 @@ document.addEventListener("DOMContentLoaded", function () {
             event.stopPropagation()
             userDropdownContent.style.display = (userDropdownContent.style.display === "block") ? "none" : "block"
 
-            // Close the notification dropdown when the user profile dropdown is clicked
             notificationDropdownContent.style.display = "none"
         })
+
+        usernameElement.addEventListener("keydown", function (event) {
+            if (event.key === 'Enter') {
+                event.stopPropagation()
+                userDropdownContent.style.display = (userDropdownContent.style.display === "block") ? "none" : "block"
+
+                notificationDropdownContent.style.display = "none"
+            }
+        })
+
     }
 
     if (bellIconElement) {
         bellIconElement.addEventListener("click", function (event) {
             event.stopPropagation()
             notificationDropdownContent.style.display = (notificationDropdownContent.style.display === "block") ? "none" : "block"
-
-            // Close the user dropdown when the notification dropdown is clicked
             userDropdownContent.style.display = "none"
+        })
+
+        bellIconElement.addEventListener("keydown", function (event) {
+            if (event.key === 'Enter') {
+                event.stopPropagation()
+                notificationDropdownContent.style.display = (notificationDropdownContent.style.display === "block") ? "none" : "block"
+                userDropdownContent.style.display = "none"
+            }
         })
     }
 
@@ -160,12 +161,31 @@ let selectContainer = document.querySelector('.select-container')
 let selectContainerMobile = document.querySelector('.select-container-mobile')
 let XIcon = document.querySelector('.x-icon')
 let XIconMobile = document.querySelector('.x-icon-mobile')
-XIcon.addEventListener('click', () => {
+
+function hideSelectContainer(selectContainer) {
     selectContainer.style.display = 'none'
+}
+
+XIcon.addEventListener('click', () => {
+    hideSelectContainer(selectContainer)
 })
+
+XIcon.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        hideSelectContainer(selectContainer)
+    }
+})
+
 XIconMobile.addEventListener('click', () => {
-    selectContainerMobile.style.display = 'none'
+    hideSelectContainer(selectContainerMobile)
 })
+
+XIconMobile.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        hideSelectContainer(selectContainerMobile)
+    }
+})
+
 
 //using button to navigate
 function Redirect() {

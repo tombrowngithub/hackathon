@@ -22,6 +22,18 @@
     border-radius: 10px;
 }
 
+.searchbar:focus {
+    outline: 1px solid #b7b6b6;
+    outline-offset: 2px;
+    border-radius: 5px;
+}
+
+.searchbar input:focus {
+    outline: 1px solid #b7b6b6;
+    outline-offset: 2px;
+    border-radius: 5px;
+}
+
 input {
     width: 100%;
     padding: 5px;
@@ -63,10 +75,18 @@ input {
     background-color: #7c7c7c;
     cursor: pointer;
 }
+.bell-icon:focus {
+    background-color: #7c7c7c;
+    outline: rgba(0, 91, 211, 0.56);
+}
 
 .username:hover {
     background-color: #7c7c7c;
     cursor: pointer;
+}
+.username:focus {
+    background-color: #7c7c7c;
+    outline: rgba(0, 91, 211, 0.56);
 }
 
 .username p {
@@ -200,14 +220,18 @@ input {
 
 .dropdown-content a {
     color: black;
-    /*padding: 7px;*/
-    /*margin-top: 7px;*/
     text-decoration: none;
 }
 
 .dropdown-content a:hover {
     background-color: #f1f1f1;
-    border-radius: 8px;
+    border-radius: 4px;
+}
+
+.dropdown-content a:focus {
+    display: block;
+    background-color: #f1f1f1;
+    border-radius: 4px;
 }
 
 .allStores {
@@ -236,7 +260,7 @@ input {
     border-bottom: 1px solid #d3d3d3;
 }
 
-.list-items li:active {
+.list-items li:active, .list-items li:focus {
     border: 1px solid #005bd3;
 }
 
@@ -357,6 +381,14 @@ input {
     justify-content: space-between;
 }
 
+.setup-with-icon .arrow-icon-down:focus, .setup-with-icon .arrow-icon-up:focus {
+    outline: 2px solid rgba(0, 83, 169, 0.53);
+    background-color: #f0f0f0;
+    color: #333;
+    border-radius: 6px;
+
+}
+
 .setup-with-icon .arrow-icon-down:hover {
     background-color: #e7e7e7;
     border-radius: 6px;
@@ -369,17 +401,34 @@ input {
     cursor: pointer;
 }
 
+.icon-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+}
+
+.icon-button:focus, .icon-button:active {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 3px;
+    outline: 1px solid darkblue;
+    outline-offset: 2px;
+}
+
 
 a:focus, button:focus {
     outline: 1px solid gray;
     outline-offset: 2px;
 }
 
-input:active, input:focus{
-    outline: 1px solid gray;
-    outline-offset: 2px;
-    border-radius: 5px;
-}
 
 a:active, button:active {
     outline: none;
@@ -543,6 +592,10 @@ a:active, button:active {
 }
 
 .clickedIcon1-1:hover circle, .clickedIcon1-2:hover circle, .clickedIcon3-1:hover circle, .clickedIcon4-1:hover circle, .clickedIcon5-1:hover circle {
+    stroke-dasharray: 0 0;
+}
+
+.clickedIcon1-1:focus circle, .clickedIcon1-2:focus circle, .clickedIcon3-1:focus circle, .clickedIcon4-1:focus circle, .clickedIcon5-1:focus circle {
     stroke-dasharray: 0 0;
 }
 
